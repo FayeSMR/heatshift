@@ -66,7 +66,7 @@ If time contracts, cut optional polish and extra interactions first. The real Ge
 
 ## Team contribution
 
-Four complementary responsibilities feed one working demonstration. This is the proposed coordination plan; individual acceptance and completed deliverables are not yet verified.
+Four complementary responsibilities feed one working demonstration. Nelson’s scenario and intensity-review proposal (PRs #8 and #11) and Nina’s evaluation specification (PR #9) have been reviewed and merged. Their unvalidated assumptions remain labeled. Faye retains naming and visual direction; current styling is provisional. The table below preserves the original handoff plan.
 
 | Owner | Responsibility | First handoff by 12:40 PM Eastern | Final contribution |
 | --- | --- | --- | --- |
@@ -103,7 +103,7 @@ All three workstreams converge on the same scenario, task cards, timeline and cr
 
 ## Coordination
 
-Share brief updates in the authorized hackathon WhatsApp group after material milestones or blockers. Check progress about every 15 minutes during the event. Each update should contain verified progress, the next milestone and a specific decision only when needed. Avoid repetitive unchanged updates. Keep development-tool attribution out of product messaging and team updates. Keep required organizer disclosures in the submission workflow.
+Send a compact status digest in the authorized hackathon WhatsApp group every 15 minutes during the event, including active branches, open and newly merged PRs, current CI results, deployment state, blockers and next steps. Distinguish local, pushed, merged and deployed work. Routine digests are explicitly requested, even when status is unchanged; avoid duplicate sends within an interval. Each update should contain verified progress, the next milestone and a specific decision only when needed. Avoid repetitive unchanged updates. Keep development-tool attribution out of product messaging and team updates. Keep required organizer disclosures in the submission workflow.
 
 Group messages are not a substitute for issue status or verified build evidence. Do not publish chat transcripts or private contact information in the public repository.
 

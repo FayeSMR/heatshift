@@ -17,11 +17,13 @@ Source: [Hack for Humanity Miami Challenge Guide](https://github.com/AI-Collecti
 
 ## Evidence for the partner challenges
 
-- [ ] Meaningful Gemma functionality inside the product: extraction plus explanation/briefing.
-- [ ] Real Gemma 4 call through the Gemini API, exact model named in README.
-- [ ] Integration visible in source code and live demo.
-- [ ] Model license/terms linked; original project source licensed; third-party attribution retained.
-- [ ] Fresh clone can run using documented configuration and the runner's own API key.
+- [x] Meaningful Gemma functionality inside the product: extraction plus explanation/briefing.
+- [x] Real Gemma 4 call through the Gemini API, exact model named in README.
+- [x] Integration visible in source code and live demo.
+- [x] Model license/terms linked; original project source licensed; third-party attribution retained.
+- [x] Fresh clone can run using documented configuration and the runner's own API key.
+
+Runtime evidence and the current demo URL are in [VERIFICATION.md](VERIFICATION.md). These implementation checks do not establish organizer acceptance or complete the entry.
 
 ## Two-minute demonstration
 

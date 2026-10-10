@@ -15,7 +15,9 @@ HeatShift is the prototype name. Faye owns the final naming and creative directi
 5. Review the timelines and the computed change in outdoor minutes within the shift's three hottest forecast hours.
 6. Gemma explains the result and prepares a crew briefing in English and Spanish. Review, copy or download it.
 
-**Implementation status:** The local input-to-result flow has been exercised with real Gemma calls and live NWS data. Production deployment and final verification are in progress. See [verification](docs/VERIFICATION.md) for recorded evidence and limits.
+**Live prototype:** https://heatshift-naxecodes-projects.vercel.app
+
+The full input-to-result flow has been exercised with real Gemma calls and live NWS data, including a fresh-clone production run. See [verification](docs/VERIFICATION.md) for recorded evidence and limits.
 
 The scope is one crew, one Miami forecast location, one date and up to four tasks. The supervisor makes the final decision. This is forecast planning support, not a medical safety determination or a proven reduction in injuries.
 
@@ -42,13 +44,13 @@ npm run build
 npm start
 ```
 
-`npm run smoke:live` exercises extraction → forecast → schedule → bilingual briefing against a running local server and checks that tampered results are rejected. It makes real model calls. Set `HEATSHIFT_BASE_URL` to test another deployment. `npm run evaluate:live` runs the five synthetic evaluation work orders three times each against the real model, using `.env.local`. Both commands write evidence under ignored `work/`.
+`npm run smoke:live` exercises extraction → forecast → schedule → bilingual briefing against a running local server and checks that tampered results are rejected. It makes real model calls. Set `HEATSHIFT_BASE_URL` to test another deployment. `npm run evaluate:live` runs the five synthetic evaluation work orders three times each against the real model, using `.env.local`. Both commands write evidence under ignored `work/`. The evaluation runner spaces requests and stops on provider quota errors. Use `npm run evaluate:live -- --case=EVAL-02` for a focused retest.
 
 ## AI inside the application
 
 Exact runtime model: **`gemma-4-26b-a4b-it`**, accessed server-side through the **Gemini API** using Google's official `@google/genai` SDK. There is no model substitution or canned-response fallback.
 
-Gemma extracts task data and generates the explanation and bilingual briefing. It does not decide feasibility or calculate exposure. Missing inputs require supervisor confirmation. Numeric comparisons are computed in TypeScript. The briefing endpoint accepts only server-signed comparison results and rejects altered or expired data.
+Gemma extracts task data and generates the explanation and bilingual briefing. Task citations identify numbered work-order lines; the server copies the original source text for review. It does not decide feasibility or calculate exposure. Missing inputs require supervisor confirmation. Numeric comparisons are computed in TypeScript. The briefing endpoint accepts only server-signed comparison results and rejects altered or expired data.
 
 - [Gemma through the Gemini API](https://ai.google.dev/gemma/docs/core/gemma_on_gemini_api)
 - [Gemma 4 model card and license](https://ai.google.dev/gemma/docs/core/model_card_4)

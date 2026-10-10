@@ -1,4 +1,5 @@
 import { Extraction, minutes } from './contracts';
+import { PlanError, validatePlan } from './scheduler';
 
 // Some valid model responses encode a question as a labeled object. Preserve its text.
 export function normalizeQuestions(value: unknown): unknown {
@@ -23,9 +24,9 @@ export function normalizeQuestions(value: unknown): unknown {
 export function reviewExtraction(
   extraction: Extraction,
   workOrder: string,
-  shift: { shiftStart: string; shiftEnd: string },
+  shift: { shiftStart: string; shiftEnd: string; breakStart: string; breakEnd: string },
 ) {
-  const questions = new Set(extraction.questions);
+  const questions = new Set(extraction.questions.filter((q) => q.trim()));
   const normalized = workOrder.replace(/\s+/g, ' ').trim();
   const tasks = extraction.tasks.map((task) => {
     const t = { ...task };
@@ -70,5 +71,12 @@ export function reviewExtraction(
       );
     return t;
   });
+  if (tasks.every((t) => t.duration !== null && t.duration % 30 === 0)) {
+    try {
+      validatePlan({ ...shift, tasks: tasks.map((t) => ({ ...t, duration: t.duration! })) });
+    } catch (error) {
+      if (error instanceof PlanError) questions.add(error.message);
+    }
+  }
   return { tasks, questions: [...questions].slice(0, 24) };
 }

@@ -1,14 +1,21 @@
 import { Comparison, Forecast, Hour, Metrics, Placement, Plan, Task, minutes } from './contracts';
 
+type ConstraintTask = Pick<
+  Task,
+  'id' | 'title' | 'duration' | 'earliestStart' | 'latestFinish' | 'fixedStart' | 'dependencies'
+>;
+type PlanConstraints = Pick<Plan, 'shiftStart' | 'shiftEnd' | 'breakStart' | 'breakEnd'> & {
+  tasks: ConstraintTask[];
+};
 export class PlanError extends Error {}
 const overlaps = (a: Placement, b: Placement) => a.start < b.end && b.start < a.end;
-function bounds(plan: Plan, task: Task) {
+function bounds(plan: PlanConstraints, task: ConstraintTask) {
   return {
     start: Math.max(minutes(plan.shiftStart), task.earliestStart ? minutes(task.earliestStart) : 0),
     end: Math.min(minutes(plan.shiftEnd), task.latestFinish ? minutes(task.latestFinish) : 1440),
   };
 }
-export function validatePlan(plan: Plan) {
+export function validatePlan(plan: PlanConstraints) {
   const start = minutes(plan.shiftStart),
     end = minutes(plan.shiftEnd);
   const bs = minutes(plan.breakStart),
@@ -43,7 +50,7 @@ export function validatePlan(plan: Plan) {
   }
   plan.tasks.forEach((t) => visit(t.id));
   const finishes = new Map<string, number>();
-  function earliestFinish(task: Task): number {
+  function earliestFinish(task: ConstraintTask): number {
     if (finishes.has(task.id)) return finishes.get(task.id)!;
     const dependencies = task.dependencies.map((id) => plan.tasks.find((t) => t.id === id)!);
     let s = Math.max(bounds(plan, task).start, ...dependencies.map(earliestFinish));

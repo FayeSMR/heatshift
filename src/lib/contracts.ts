@@ -21,7 +21,7 @@ export const draftTaskSchema = z.object({
 });
 export const extractionSchema = z.object({
   tasks: z.array(draftTaskSchema).min(1).max(4),
-  questions: z.array(z.string().max(1000)).max(24),
+  questions: z.array(z.string().min(1).max(1000)).max(24),
 });
 export const taskSchema = draftTaskSchema.omit({ sourceText: true }).extend({
   duration: z.number().int().min(30).max(480).multipleOf(30),

@@ -19,7 +19,7 @@ const base: Extraction = {
   ],
   questions: [],
 };
-const shift = { shiftStart: '08:00', shiftEnd: '16:00' };
+const shift = { shiftStart: '08:00', shiftEnd: '16:00', breakStart: '12:00', breakEnd: '12:30' };
 test('missing source time never becomes a made-up shift-start appointment', () => {
   const r = reviewExtraction(base, 'Trim palms.', shift);
   assert.equal(r.tasks[0].originalStart, null);

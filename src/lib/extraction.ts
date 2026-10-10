@@ -33,14 +33,8 @@ export function reviewExtraction(
   const lines = workOrder.split(/\r?\n/);
   const tasks = extraction.tasks.map((task) => {
     const t = { ...task };
-    const numberedSource =
-      t.sourceLines.length > 0 && t.sourceLines.every((n) => n <= lines.length);
-    if (numberedSource) {
-      t.sourceText = [...new Set(t.sourceLines)]
-        .sort((a, b) => a - b)
-        .map((n) => lines[n - 1])
-        .join('\n');
-    }
+    const numberedSource = t.sourceLine >= 1 && t.sourceLine <= lines.length;
+    if (numberedSource) t.sourceText = lines[t.sourceLine - 1];
     const source = t.sourceText.replace(/\s+/g, ' ').trim();
     const sourceVerified = numberedSource || normalized.includes(source);
     const explicitTime = /\b\d{1,2}:\d{2}\b|\b\d{1,2}\s*(?:am|pm)\b/i.test(source);

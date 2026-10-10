@@ -8,7 +8,7 @@ const base: Extraction = {
       id: 't1',
       title: 'Trim palms',
       sourceText: 'Trim palms.',
-      sourceLines: [],
+      sourceLine: 0,
       duration: null,
       environment: 'unknown',
       originalStart: '08:00',
@@ -72,7 +72,7 @@ test('numbered source citations copy original text rather than model paraphrases
       tasks: [
         {
           ...base.tasks[0],
-          sourceLines: [2],
+          sourceLine: 2,
           sourceText: 'rewritten text',
           duration: 60,
           environment: 'outdoor',

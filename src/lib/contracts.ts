@@ -11,7 +11,7 @@ export const draftTaskSchema = z.object({
   id: z.string().regex(/^[a-zA-Z0-9_-]{1,20}$/),
   title: z.string().min(1).max(100),
   sourceText: z.string().max(2000).default(''),
-  sourceLines: z.array(z.number().int().min(1).max(2000)).max(12).default([]),
+  sourceLine: z.number().int().min(1).max(2000),
   duration: z.number().int().min(1).max(1440).nullable(),
   environment: z.enum(['outdoor', 'indoor', 'unknown']),
   originalStart: maybeClock,
@@ -24,7 +24,7 @@ export const extractionSchema = z.object({
   tasks: z.array(draftTaskSchema).min(1).max(4),
   questions: z.array(z.string().min(1).max(1000)).max(24),
 });
-export const taskSchema = draftTaskSchema.omit({ sourceText: true, sourceLines: true }).extend({
+export const taskSchema = draftTaskSchema.omit({ sourceText: true, sourceLine: true }).extend({
   duration: z.number().int().min(30).max(480).multipleOf(30),
   environment: z.enum(['outdoor', 'indoor']),
   originalStart: clock,

@@ -52,7 +52,7 @@ The project is being developed toward all three challenges:
 
 Eligibility depends on the completed implementation and submission requirements. See the [submission checklist](docs/SUBMISSION.md) and [official challenge guide](https://github.com/AI-Collective-Hackathons/hack-for-humanity-miami/blob/main/Challenge%20Guide.md).
 
-Team: Aladdin, project lead and implementation; finance, creative/marketing and social-work contributors support product direction and review. The final public roster will be confirmed before submission.
+Team: Aladdin leads implementation; Faye contributes creative direction and marketing; Nelson contributes worker needs and community-impact expertise; Nina contributes ML product evaluation and product value. See the [team handoffs](docs/BUILD_PLAN.md#team-contribution). The registered submission roster still needs to be verified.
 
 ## License
 

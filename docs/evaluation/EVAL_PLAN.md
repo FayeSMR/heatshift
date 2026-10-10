@@ -1,6 +1,6 @@
 # HeatShift evaluation plan
 
-**Status: proposed. No case has been run against the application.** The application does not exist yet. Nothing in this document or in [`examples/evaluation-cases.json`](../../examples/evaluation-cases.json) is evaluation evidence, a benchmark or a result.
+**Status: evaluation specification with implementation runs recorded separately.** This document and [`examples/evaluation-cases.json`](../../examples/evaluation-cases.json) define synthetic inputs and expectations. See [verification evidence](../VERIFICATION.md) for actual runs, limits and remaining review. The tables below preserve the original per-case manual review status; they are not a claim that every evaluation dimension passed.
 
 All work orders, crews, clients and forecast values in the cases are synthetic and written for evaluation. None is field-validated. The forecast fixture is not National Weather Service data and must never be shown as a live forecast.
 
@@ -62,7 +62,7 @@ Fill this in only from an actual run. Record the date, the commit, the model nam
 
 ## How to run a case
 
-There is no harness yet; these steps are manual and can be automated later.
+The implementation now has `npm test` for deterministic checks, `npm run evaluate:live` for repeated extraction, and `npm run smoke:live` for the live API flow. Full semantic review of every briefing remains manual. The following steps describe the intended complete case review.
 
 1. **Scheduler (no model needed).** Feed the expected task list, shift, break and the synthetic forecast fixture directly to the scheduling module. Compare outcome, hottest hours and metrics with `expected.scheduling`. This isolates the math from the model and can become a unit test.
 2. **Extraction (real Gemma call).** Paste `work_order_text` into the app. Compare the task cards with `expected.extraction` field by field before editing anything. Run each case three times; model output varies, and a case that passes once in three is a fail.

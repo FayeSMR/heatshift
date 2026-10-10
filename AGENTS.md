@@ -15,3 +15,13 @@ Teammates provide expertise and steering. Do not assign them software implementa
 Keep scope to one crew, one location, one day and four tasks until the core flow is verified. Preserve paid shift time, task durations, breaks, dependencies and appointments. Treat no-improvement and infeasibility as valid outcomes.
 
 Use focused tests for schedule constraints and forecast/time normalization. Verify the deployed input-to-result flow and fresh-clone setup before claiming a working release. Update documentation and example configuration when behavior changes.
+
+<!-- BEGIN:nextjs-agent-rules -->
+
+## This is NOT the Next.js you know
+
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+
+<!-- END:nextjs-agent-rules -->

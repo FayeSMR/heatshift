@@ -30,17 +30,27 @@ export function reviewExtraction(
 ) {
   const questions = new Set(extraction.questions.filter((q) => q.trim()));
   const normalized = workOrder.replace(/\s+/g, ' ').trim();
+  const lines = workOrder.split(/\r?\n/);
   const tasks = extraction.tasks.map((task) => {
     const t = { ...task };
+    const numberedSource =
+      t.sourceLines.length > 0 && t.sourceLines.every((n) => n <= lines.length);
+    if (numberedSource) {
+      t.sourceText = [...new Set(t.sourceLines)]
+        .sort((a, b) => a - b)
+        .map((n) => lines[n - 1])
+        .join('\n');
+    }
     const source = t.sourceText.replace(/\s+/g, ' ').trim();
+    const sourceVerified = numberedSource || normalized.includes(source);
     const explicitTime = /\b\d{1,2}:\d{2}\b|\b\d{1,2}\s*(?:am|pm)\b/i.test(source);
-    if (!source || !normalized.includes(source) || !explicitTime) {
+    if (!source || !sourceVerified || !explicitTime) {
       t.originalStart = null;
       questions.add(
         `${t.title}: confirm the original start time; it could not be tied to an explicit time in this task's source.`,
       );
     }
-    if (source && !normalized.includes(source)) {
+    if (source && !sourceVerified) {
       t.sourceText = '';
       questions.add(
         `${t.title}: the source excerpt could not be verified. Check every extracted field against your work order.`,

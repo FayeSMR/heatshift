@@ -8,6 +8,7 @@ const base: Extraction = {
       id: 't1',
       title: 'Trim palms',
       sourceText: 'Trim palms.',
+      sourceLines: [],
       duration: null,
       environment: 'unknown',
       originalStart: '08:00',
@@ -59,6 +60,29 @@ test('verbatim timed source preserves the explicit original start', () => {
     source,
     shift,
   );
+  assert.equal(r.tasks[0].originalStart, '08:00');
+  assert.equal(r.questions.length, 0);
+});
+
+test('numbered source citations copy original text rather than model paraphrases', () => {
+  const source = 'Crew plan\n08:00–09:00 Trim palms, outdoors.';
+  const r = reviewExtraction(
+    {
+      ...base,
+      tasks: [
+        {
+          ...base.tasks[0],
+          sourceLines: [2],
+          sourceText: 'rewritten text',
+          duration: 60,
+          environment: 'outdoor',
+        },
+      ],
+    },
+    source,
+    shift,
+  );
+  assert.equal(r.tasks[0].sourceText, '08:00–09:00 Trim palms, outdoors.');
   assert.equal(r.tasks[0].originalStart, '08:00');
   assert.equal(r.questions.length, 0);
 });

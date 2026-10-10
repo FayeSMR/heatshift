@@ -1,4 +1,5 @@
 import { mkdir, writeFile } from 'node:fs/promises';
+import { setTimeout as delay } from 'node:timers/promises';
 import cases from '../examples/evaluation-cases.json';
 import { extractTasks } from '../src/lib/gemma';
 import { MODEL, planSchema } from '../src/lib/contracts';
@@ -8,8 +9,11 @@ async function main() {
   await mkdir('work', { recursive: true });
   const results = [];
   const selected = process.argv.find((arg) => arg.startsWith('--case='))?.slice(7);
-  for (const c of cases.cases.filter((c) => !selected || selected.split(',').includes(c.id))) {
+  casesLoop: for (const c of cases.cases.filter(
+    (c) => !selected || selected.split(',').includes(c.id),
+  )) {
     for (let run = 1; run <= 3; run++) {
+      if (results.length) await delay(10000);
       const shift = {
         shiftStart: c.input.shift.start,
         shiftEnd: c.input.shift.end,
@@ -70,6 +74,7 @@ async function main() {
         console.log(
           JSON.stringify({ case: c.id, run, error: e instanceof Error ? e.message : 'Failed' }),
         );
+        if (e instanceof Error && e.message.includes('quota')) break casesLoop;
       }
     }
   }

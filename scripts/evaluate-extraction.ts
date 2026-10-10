@@ -7,7 +7,8 @@ async function main() {
     throw new Error('Pass --live to make 15 real Gemma calls using the configured API key.');
   await mkdir('work', { recursive: true });
   const results = [];
-  for (const c of cases.cases) {
+  const selected = process.argv.find((arg) => arg.startsWith('--case='))?.slice(7);
+  for (const c of cases.cases.filter((c) => !selected || selected.split(',').includes(c.id))) {
     for (let run = 1; run <= 3; run++) {
       const shift = {
         shiftStart: c.input.shift.start,
@@ -57,7 +58,15 @@ async function main() {
           JSON.stringify({ case: c.id, run, differences, ready, elapsedMs: Date.now() - started }),
         );
       } catch (e) {
-        results.push({ case: c.id, run, error: e instanceof Error ? e.message : 'Failed' });
+        results.push({
+          case: c.id,
+          run,
+          error: e instanceof Error ? e.message : 'Failed',
+          schemaIssues:
+            e instanceof Error && e.cause && typeof e.cause === 'object' && 'issues' in e.cause
+              ? e.cause.issues
+              : undefined,
+        });
         console.log(
           JSON.stringify({ case: c.id, run, error: e instanceof Error ? e.message : 'Failed' }),
         );
@@ -65,7 +74,7 @@ async function main() {
     }
   }
   await writeFile(
-    'work/extraction-evaluation.json',
+    selected ? `work/extraction-evaluation-${selected}.json` : 'work/extraction-evaluation.json',
     JSON.stringify(
       {
         date: new Date().toISOString(),

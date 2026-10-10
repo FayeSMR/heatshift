@@ -12,13 +12,15 @@ export function normalizeQuestions(value: unknown): unknown {
     return value;
   return {
     ...value,
-    questions: value.questions.map((q) =>
-      q && typeof q === 'object' && !Array.isArray(q)
-        ? Object.values(q)
-            .filter((v) => typeof v === 'string')
-            .join(': ')
-        : q,
-    ),
+    questions: value.questions
+      .map((q) =>
+        q && typeof q === 'object' && !Array.isArray(q)
+          ? Object.values(q)
+              .filter((v) => typeof v === 'string')
+              .join(': ')
+          : q,
+      )
+      .filter((q) => typeof q !== 'string' || q.trim()),
   };
 }
 export function reviewExtraction(

@@ -71,11 +71,11 @@ Four complementary responsibilities feed one working demonstration. This is the 
 | Owner | Responsibility | First handoff by 12:40 PM Eastern | Final contribution |
 | --- | --- | --- | --- |
 | Aladdin | Implementation and integration | Target: runnable shell, task contract and Gemma access check; first live extraction remains the 12:45 target | Working app, reliable demo, source and deployment |
-| Faye | Creative direction, UX and marketing | One visual direction, suggested headline and three screen priorities; rough references or bullets are sufficient | Review the built interface, polish product wording and prepare the two-minute demo narrative |
+| Faye | Naming, creative direction, UX and marketing | Three name options and a recommendation, one visual direction, suggested headline and three screen priorities; rough references or bullets are sufficient | Select the final product name, review the built interface, polish product wording and prepare the two-minute demo narrative |
 | Nelson | Worker needs and community impact | One clearly labeled example workday for a Miami landscaping crew, with up to four tasks and three constraints we must preserve | Review the scenario and briefing for usefulness, dignity and accessibility; articulate who benefits and how |
 | Nina | Model evaluation, product value and operational assumptions | Three evaluation cases with expected behavior: ordinary work order, missing/contradictory details and impossible schedule; one concrete supervisor benefit | Check model outputs and computed comparisons, challenge unsupported claims and prepare product/AI answers for judges |
 
-Nina's ML product experience informs evaluation and product judgment. HeatShift does not require training a new model or adding financial forecasting. Nelson's social-work expertise informs the problem and language; do not label a scenario as field-validated without actual evidence. Faye owns a clear visual decision and story without needing to produce a full design system during the event.
+Nina's ML product experience informs evaluation and product judgment. HeatShift does not require training a new model or adding financial forecasting. Nelson's social-work expertise informs the problem and language; do not label a scenario as field-validated without actual evidence. Faye owns naming, a clear visual decision and the story without needing to produce a full design system during the event. HeatShift is the prototype name; coordinate any repository or deployment rename after the team selects the final name.
 
 Aladdin remains responsible for application implementation and integration. Teammates can use their own AI tools to produce the scoped artifacts below. Use the existing fictional sample and provisional styling until better input arrives.
 
@@ -85,7 +85,7 @@ Start each branch from the latest `origin/main`. If a teammate does not have wri
 
 | Owner | Branch | Owned files |
 | --- | --- | --- |
-| Faye | `faye/creative-direction` | `docs/creative/BRIEF.md`: visual direction, interface wording, screen priorities and two-minute demo story |
+| Faye | `faye/creative-direction` | `docs/creative/BRIEF.md`: naming shortlist and recommendation, visual direction, interface wording, screen priorities and two-minute demo story |
 | Nelson | `nelson/worker-impact` | `docs/impact/WORKER_SCENARIO.md`: labeled example, confirmed versus assumed needs, constraints, worker-facing language and validation questions |
 | Nina | `nina/evaluation` | `docs/evaluation/EVAL_PLAN.md` and `examples/evaluation-cases.json`: model/algorithm evaluation cases, expected behavior, evidence boundaries and product value |
 

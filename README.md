@@ -2,6 +2,8 @@
 
 Plan outdoor work around Miami's hottest hours.
 
+HeatShift is the prototype name. Faye owns the final naming and creative direction; the repository keeps its current name until a replacement is selected and coordinated.
+
 HeatShift helps a landscaping supervisor turn a work order into a practical crew schedule using local weather forecasts. It compares the original plan with an alternative that moves flexible outdoor tasks into cooler forecast windows while preserving task duration, appointments, breaks, dependencies and the paid shift.
 
 **Status:** Project foundation and delivery plan. The application, live model integration and deployment are not implemented yet.

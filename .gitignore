@@ -10,3 +10,6 @@ coverage/
 *.log
 .DS_Store
 work/
+
+*.tsbuildinfo
+.vercel

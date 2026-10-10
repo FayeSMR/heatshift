@@ -21,7 +21,15 @@ async function generate<T>(
   try {
     const ai = new GoogleGenAI({
       apiKey,
-      httpOptions: { timeout: 40000, retryOptions: { attempts: 1 } },
+      httpOptions: {
+        timeout: 20000,
+        retryOptions: {
+          attempts: 2,
+          initialDelay: 1,
+          maxDelay: 2,
+          httpStatusCodes: [408, 500, 502, 503, 504],
+        },
+      },
     });
     const response = await ai.models.generateContent({
       model: MODEL,
@@ -51,6 +59,9 @@ async function generate<T>(
   } catch (error) {
     if (error instanceof PlanError) throw error;
     const status = (error as { status?: number }).status;
+    console.error('Gemma provider request failed', {
+      status: typeof status === 'number' ? status : 'unavailable',
+    });
     if (status === 429)
       throw new PlanError('Gemma has reached its current quota. Wait a moment and try again.');
     if (status === 401 || status === 403)

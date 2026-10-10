@@ -19,7 +19,10 @@ async function generate<T>(
   if (process.env.GEMMA_MODEL && process.env.GEMMA_MODEL !== MODEL)
     throw new PlanError('This build requires the documented Gemma 4 model. Check GEMMA_MODEL.');
   try {
-    const ai = new GoogleGenAI({ apiKey, httpOptions: { timeout: 45000 } });
+    const ai = new GoogleGenAI({
+      apiKey,
+      httpOptions: { timeout: 40000, retryOptions: { attempts: 1 } },
+    });
     const response = await ai.models.generateContent({
       model: MODEL,
       contents,
@@ -30,7 +33,7 @@ async function generate<T>(
         responseMimeType: 'application/json',
         responseJsonSchema: z.toJSONSchema(schema),
         temperature: 0.1,
-        maxOutputTokens: thinkingLevel === ThinkingLevel.HIGH ? 8192 : 3500,
+        maxOutputTokens: thinkingLevel === ThinkingLevel.HIGH ? 4096 : 3500,
         thinkingConfig: { thinkingLevel },
       },
     });
@@ -72,7 +75,7 @@ export async function extractTasks(
     `You extract at most four tasks from a landscaping work order. Never invent missing details. Output {"tasks":[{"id":"t1","title":"...","sourceText":"exact original line or paragraph describing this task","duration":90,"environment":"outdoor","originalStart":"08:00","earliestStart":null,"latestFinish":null,"fixedStart":null,"dependencies":[]}],"questions":[]}.
 Task IDs must be unique t1,t2,t3,t4. duration is the stated number of minutes (1 to 1440), or null if unknown. Preserve all stated durations exactly, including 45; never round or assess whether a duration is supported. Validation is done by code, not you. All times are HH:MM, 24-hour. Preserve all stated times exactly, including 08:15; validation is done by code. sourceText must be a verbatim excerpt from the work order describing this specific task, including its time when given. Do not quote the overall shift as evidence for a task start. environment is indoor, outdoor, or unknown. originalStart is the task's explicit original start, null if absent. Do not assign the shift start to the first task if that task has no explicit start time. earliestStart/latestFinish are only explicitly stated task constraints, otherwise null (the shift applies). fixedStart is only for an explicit fixed appointment, not just an original start. dependencies lists tasks that must finish BEFORE this task. If task A says it must finish before task B, put A in B.dependencies. Do not turn dependencies into fixed starts. Preserve actual task durations. Never silently drop tasks, infer indoor/outdoor from task type, resolve contradictory timing, round times, or remove work to fit. If over four tasks or contradictory details, ask a question and do not imply the order is complete. If duration or environment or originalStart missing, use null or unknown and ask a question. If work-order shift or break differs from supplied settings, ask the supervisor to reconcile them. A listed original time is NOT a fixed appointment. fixedStart must be null unless this particular task explicitly says fixed, cannot move, or is an appointment. A deadline or must-finish-before relationship is not a fixed start. Example: 06:30–08:00 unload tools, must finish before crane delivery; 07:30 fixed crane delivery. Unload has originalStart 06:30, fixedStart null. Delivery has originalStart and fixedStart 07:30, dependencies [the unload ID]. Keep the conflicting input; do not repair it. Questions are only for unclear meanings, not arithmetic, timing feasibility or recommendations; those checks run in code. questions must be an array of plain strings, never objects. Never add generic safety advice or personal details.`,
     JSON.stringify({ shift, workOrder }),
-    ThinkingLevel.HIGH,
+    ThinkingLevel.MINIMAL,
   );
   return reviewExtraction(extracted, workOrder, shift);
 }

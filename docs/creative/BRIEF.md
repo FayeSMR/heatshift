@@ -31,7 +31,7 @@ Do not inherit tiny labels, faint text, hidden double-tap gestures, decorative m
 | Warning ink / ochre | #76501F | Warning text on #FFF0D6 |
 | Error ink / brick | #A13228 | Error text on #FBE9E5 |
 
-Aim for roughly 90% white and off-white surfaces, 8% pale sage, and 2% warm accent. Keep this direction light regardless of system appearance. This is a composition guide, not a quota. White or pale text must not sit directly on a pale gradient. Keep a solid text zone inside atmospheric cards.
+Keep the overall interface predominantly white and off-white with pale sage controls. The weather panel is the concentrated warm-color area. Keep this direction light regardless of system appearance. This is a composition guide, not a quota. White or pale text must not sit directly on a pale gradient. Keep a solid text zone inside atmospheric cards.
 
 Use semantic color names in code. Oat is forecast context, not a universal warning. Sage indicates selection or an ordinary completed action, never a guarantee of safe working conditions. Pair every status with a label and, where useful, an icon.
 
@@ -45,7 +45,7 @@ Cards use 24px corners; featured forecast panels use 32px; fields use 12px; shor
 
 ## Signature components
 
-**Forecast panel.** One large apparent-temperature value, labeled “Feels like,” with °F or °C. Put location, forecast date, source and update time nearby. Use a barely visible oat-colored radial glow inside a near-white panel; the card should read as daylight, not orange. The glow is decorative; an hourly strip carries the actual values. Mark the selected hour with a solid outline or filled pill and a text label. Label hottest-hour highlights relative to the selected shift; do not invent clinical risk thresholds.
+**Forecast panel.** One large apparent-temperature value, labeled “Feels like,” with °F or °C. Put location, forecast date, source and update time nearby. Use a richer sun-colored gradient in this panel while keeping the rest of the interface light. Interpolate continuously from golden yellow (#F2CF65) at 75°F through orange (#F2A34F) at 90°F to warm red (#E9826D) at 105°F. These are visual anchors, not medical or safety thresholds. Clamp the color outside that range while always displaying the actual temperature. Normalize Celsius to Fahrenheit before interpolation. Use the displayed apparent (feels-like) temperature, not air temperature. Missing values use a neutral panel and an unavailable label. Keep text dark brown (#382B22) throughout the gradient. Color reinforces the labeled numeric temperature; an hourly strip in the app carries the actual forecast values. Mark the selected hour with a solid outline or filled pill and a text label. Label hottest-hour highlights relative to the selected shift; do not invent clinical risk thresholds.
 
 **Task card.** Lead with task title. Group start–end time, duration and indoor/outdoor state beneath it. Show fixed appointments and dependencies explicitly. Keep editing accessible through a visible “Edit task” control. Expanded details use the same surface. Missing required values get a field-level message and an error summary.
 
@@ -77,11 +77,17 @@ Use 160ms feedback for buttons and selection, and 240ms for expanding cards, wit
 
 Review final screens at 320px, 390px, 768px and desktop widths, at 200% text zoom, and with keyboard focus. Verify contrast on actual rendered gradients, not only token pairs. The palette's small-text pairs are intended to meet at least 4.5:1; essential control boundaries should meet 3:1. This guide is not a claim that the existing app has passed an accessibility audit.
 
-Reusable direction: “Use Soft Signal: chalk canvas, milk cards, sage selections, charcoal typography, a faint contained oat forecast glow, generous spacing, readable operational text, 24px cards, 48px controls, and one clear next action. Preserve all scheduling facts and label forecast uncertainty.”
+Reusable direction: “Use Soft Signal: chalk canvas, milk cards, sage selections, charcoal typography, a contained yellow-to-orange-to-red temperature-driven forecast glow, generous spacing, readable operational text, 24px cards, 48px controls, and one clear next action. Preserve all scheduling facts and label forecast uncertainty.”
 
 ## Review assets and checks
 
-- [Standalone visual specimen](preview.html): open the downloaded file in a browser. Values are illustrative. The task button expands example details. The specimen stays light in both system appearances.
+- [Standalone visual specimen](preview.html): open the downloaded file in a browser. Values are illustrative. The task button expands example details; the demo temperature slider previews the sun spectrum. The specimen stays light in both system appearances.
 - [CSS tokens](tokens.css): proposed variables, not imported by the application.
 - Specimen checked with Chrome at 320, 390, 768 and 1100px: no horizontal overflow; task expansion passed. Desktop screenshot visually reviewed.
 - Calculated light-theme contrast: primary text/canvas 11.59:1, secondary text/canvas 5.66:1, secondary text/sage 5.23:1, primary button text/fill 9.45:1, control boundary/milk 3.76:1. These checks do not replace a rendered application accessibility review.
+
+### Temperature-color implementation
+
+Linearly interpolate each RGB channel between the two surrounding temperature anchors and round to the nearest integer. Assign the resulting color to `--hs-forecast-color` on the forecast component. Keep the original value and unit in the numeric label, even outside the visual range. Do not apply this scale to error messages or imply that yellow conditions are safe. The specimen slider changes illustrative values only; it does not change the forecast.
+
+Temperature specimen checks: 75°F, 90°F and 105°F map to the specified anchor colors and update the displayed value. Responsive layouts passed at 320, 390, 768 and 1100px. Dark-brown weather text contrast is 9.04:1 on yellow, 6.59:1 on orange, 5.13:1 on red and 12.15:1 on the pale gradient endpoint.

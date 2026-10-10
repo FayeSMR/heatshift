@@ -42,10 +42,16 @@
   --hs-duration-feedback: 160ms;
   --hs-duration-expand: 240ms;
   --hs-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
-  --hs-forecast-glow: radial-gradient(ellipse at 85% 80%, #f1d8b940, transparent 62%), linear-gradient(135deg, #f5f7ee, #fbf8f0);
+  /* Visual anchors for feels-like temperature, not safety thresholds. */
+  --hs-sun-yellow: #f2cf65; /* 75°F / 23.9°C */
+  --hs-sun-orange: #f2a34f; /* 90°F / 32.2°C */
+  --hs-sun-red: #e9826d; /* 105°F / 40.6°C */
+  --hs-forecast-color: var(--hs-sun-orange);
+  --hs-forecast-text: #382b22;
+  --hs-forecast-glow: radial-gradient(ellipse at 85% 85%, var(--hs-forecast-color), transparent 78%), linear-gradient(145deg, #fff1c9, var(--hs-forecast-color));
 }
 .hs-surface { background: var(--hs-surface); color: var(--hs-text); border-radius: var(--hs-radius-card); }
-.hs-forecast { background: var(--hs-forecast-glow); color: var(--hs-text); border-radius: var(--hs-radius-hero); }
+.hs-forecast { background: var(--hs-forecast-glow); color: var(--hs-forecast-text); border-radius: var(--hs-radius-hero); }
 @media (prefers-reduced-motion: reduce) {
   :root { --hs-duration-feedback: 0ms; --hs-duration-expand: 0ms; }
 }

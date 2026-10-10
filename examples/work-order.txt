@@ -1,0 +1,16 @@
+Demonstration work order. Fictional crew and task details.
+
+Location: Miami, Florida
+Date: Choose a date covered by the current NWS forecast.
+Paid shift: 8:00 AM to 4:00 PM
+Fixed break: 12:00 PM to 12:30 PM
+
+Original plan:
+8:00 AM to 9:30 AM: Inventory and tool preparation indoors.
+9:30 AM to 11:00 AM: Load and sort supplies in the indoor storage area.
+11:00 AM to 12:00 PM: Prune hedges outdoors.
+12:30 PM to 2:00 PM: Mow the lawn outdoors.
+
+All four tasks are flexible within the shift. There are no dependencies between these tasks. Preserve all task durations, the fixed break, and the shift end time. Unallocated time is paid availability, not permission to shorten the shift.
+
+The application should show whether the forecast permits a lower-exposure schedule. Improvement is not guaranteed.

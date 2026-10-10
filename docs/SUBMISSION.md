@@ -7,8 +7,8 @@ Source: [Hack for Humanity Miami Challenge Guide](https://github.com/AI-Collecti
 - [ ] OrganizerHQ check-in verified.
 - [ ] Final team roster confirmed within the organizer's team rules.
 - [ ] Project name, specific user, problem and working solution supplied.
-- [x] Public GitHub repository with an open-source license planned and initialized locally; verify the published URL before marking publication complete.
-- [ ] Published repository verified and kept public after the event.
+- [x] Public GitHub repository with an MIT license published and verified: https://github.com/NaxeCode/heatshift.
+- [ ] Repository remains public after the event.
 - [ ] README contains final team names, primary track, data sources, exact runtime model and tested run instructions.
 - [ ] Organizer-required AI tooling and model disclosures completed accurately. Development-tool disclosure is pending; keep it in the submission workflow rather than product or team messaging.
 - [ ] Select Four Forces, One City / Fire as the primary Build for Miami track.

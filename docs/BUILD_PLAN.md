@@ -38,6 +38,8 @@ The result can legitimately be unchanged or infeasible. Show why, and never manu
 
 ## Delivery sequence
 
+Implementation is tracked in [five GitHub issues](https://github.com/NaxeCode/heatshift/issues) under the [Hackathon MVP milestone](https://github.com/NaxeCode/heatshift/milestone/1).
+
 Times are working targets for October 10, 2026, Eastern, not completed milestones. Build closes at 3:30 PM and submission is due at 3:45 PM.
 
 | Target | Deliverable | Acceptance evidence |

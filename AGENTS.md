@@ -2,6 +2,8 @@
 
 Read README.md, docs/BUILD_PLAN.md and the relevant GitHub issue before implementation. Keep issue status consistent with demonstrated behavior.
 
+All changes to `main` must go through a pull request. This applies to administrators too. Work on a short-lived branch; never disable branch protection or force-push `main` to deliver a change. Review the diff and applicable checks before merging. Independent reviewer approval is currently optional.
+
 The user authorized the project foundation, plan and public GitHub setup. Follow subsequent implementation instructions and preserve existing work. Do not infer that a planned feature is complete.
 
 Use Gemma 4 through the Gemini API for meaningful application inference. Keep keys server-side. Use deterministic code for schedule validity and comparison metrics. Never substitute invented model responses or stale fixtures for a claimed live integration.

@@ -66,16 +66,45 @@ If time contracts, cut optional polish and extra interactions first. The real Ge
 
 ## Team contribution
 
-Aladdin owns implementation and product decisions. Teammates contribute domain expertise and steering:
+Four complementary responsibilities feed one working demonstration. This is the proposed coordination plan; individual acceptance and completed deliverables are not yet verified.
 
-- Finance: check operational assumptions, paid-time preservation and a credible value story.
-- Creative/marketing: refine the visual narrative and two-minute pitch.
-- Social work: check worker-centered wording, accessibility and realistic needs.
+| Owner | Responsibility | First handoff by 12:40 PM Eastern | Final contribution |
+| --- | --- | --- | --- |
+| Aladdin | Implementation and integration | Target: runnable shell, task contract and Gemma access check; first live extraction remains the 12:45 target | Working app, reliable demo, source and deployment |
+| Faye | Creative direction, UX and marketing | One visual direction, suggested headline and three screen priorities; rough references or bullets are sufficient | Review the built interface, polish product wording and prepare the two-minute demo narrative |
+| Nelson | Worker needs and community impact | One clearly labeled example workday for a Miami landscaping crew, with up to four tasks and three constraints we must preserve | Review the scenario and briefing for usefulness, dignity and accessibility; articulate who benefits and how |
+| Nina | Model evaluation, product value and operational assumptions | Three evaluation cases with expected behavior: ordinary work order, missing/contradictory details and impossible schedule; one concrete supervisor benefit | Check model outputs and computed comparisons, challenge unsupported claims and prepare product/AI answers for judges |
 
-Input is welcome throughout; software delivery does not depend on teammates taking development tasks.
+Nina's ML product experience informs evaluation and product judgment. HeatShift does not require training a new model or adding financial forecasting. Nelson's social-work expertise informs the problem and language; do not label a scenario as field-validated without actual evidence. Faye owns a clear visual decision and story without needing to produce a full design system during the event.
+
+Aladdin remains responsible for application implementation and integration. Teammates can use their own AI tools to produce the scoped artifacts below. Use the existing fictional sample and provisional styling until better input arrives.
+
+### Independent branches and pull requests
+
+Start each branch from the latest `origin/main`. If a teammate does not have write access, fork the public repository, create the named branch in the fork and open a pull request to this repository's `main`. Submit the PR link in the group. Aladdin reviews integration; teammates should leave their PRs open and avoid modifying application code or one another's files.
+
+| Owner | Branch | Owned files |
+| --- | --- | --- |
+| Faye | `faye/creative-direction` | `docs/creative/BRIEF.md`: visual direction, interface wording, screen priorities and two-minute demo story |
+| Nelson | `nelson/worker-impact` | `docs/impact/WORKER_SCENARIO.md`: labeled example, confirmed versus assumed needs, constraints, worker-facing language and validation questions |
+| Nina | `nina/evaluation` | `docs/evaluation/EVAL_PLAN.md` and `examples/evaluation-cases.json`: model/algorithm evaluation cases, expected behavior, evidence boundaries and product value |
+
+Each handoff should state what changed, its assumptions, how the artifact was checked and any decision needed. Test cases are proposed inputs until actually run; do not present generated results as evaluation evidence. Domain sources should be cited where external facts are used.
+
+### Handoffs and decision points
+
+1. **12:40 PM:** Each teammate posts their first pass in the group. Keep it to one artifact or a few bullets. Mark assumptions and open questions.
+2. **12:45 PM:** Aladdin selects the demo scenario and incorporates the highest-value constraints and visual choices. Park additional features until the core flow works.
+3. **First working comparison:** Faye reviews clarity, Nelson reviews the worker experience, and Nina checks expected versus actual results. Each reports one must-fix issue and optional refinements separately.
+4. **2:40 PM target:** Freeze optional scope and run the complete demo. The build status, not the clock alone, determines what can honestly be claimed.
+5. **3:00 PM target:** Rehearse with one narrator and one operator. Proposed: Faye narrates and Aladdin drives the app; Nelson and Nina prepare for community-impact and model/product questions. Confirm roles in rehearsal.
+
+All three workstreams converge on the same scenario, task cards, timeline and crew briefing. Faye shapes how the proof is understood, Nelson shapes why it matters, and Nina checks whether the proof holds up.
 
 ## Coordination
 
 Share brief updates in the authorized hackathon WhatsApp group after material milestones or blockers. Check progress about every 15 minutes during the event. Each update should contain verified progress, the next milestone and a specific decision only when needed. Avoid repetitive unchanged updates. Keep development-tool attribution out of product messaging and team updates. Keep required organizer disclosures in the submission workflow.
 
 Group messages are not a substitute for issue status or verified build evidence. Do not publish chat transcripts or private contact information in the public repository.
+
+Changes to `main` require a pull request, including administrator changes. Use a short-lived branch and review the diff before merging. Force pushes and deletion of `main` are blocked; independent reviewer approval is currently optional.

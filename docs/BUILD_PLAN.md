@@ -77,7 +77,19 @@ Four complementary responsibilities feed one working demonstration. This is the 
 
 Nina's ML product experience informs evaluation and product judgment. HeatShift does not require training a new model or adding financial forecasting. Nelson's social-work expertise informs the problem and language; do not label a scenario as field-validated without actual evidence. Faye owns a clear visual decision and story without needing to produce a full design system during the event.
 
-Aladdin remains responsible for software implementation. Everyone has a concrete contribution; no one needs to take a coding task for the build to continue. Use the existing fictional sample and provisional styling until better input arrives.
+Aladdin remains responsible for application implementation and integration. Teammates can use their own AI tools to produce the scoped artifacts below. Use the existing fictional sample and provisional styling until better input arrives.
+
+### Independent branches and pull requests
+
+Start each branch from the latest `origin/main`. If a teammate does not have write access, fork the public repository, create the named branch in the fork and open a pull request to this repository's `main`. Submit the PR link in the group. Aladdin reviews integration; teammates should leave their PRs open and avoid modifying application code or one another's files.
+
+| Owner | Branch | Owned files |
+| --- | --- | --- |
+| Faye | `faye/creative-direction` | `docs/creative/BRIEF.md`: visual direction, interface wording, screen priorities and two-minute demo story |
+| Nelson | `nelson/worker-impact` | `docs/impact/WORKER_SCENARIO.md`: labeled example, confirmed versus assumed needs, constraints, worker-facing language and validation questions |
+| Nina | `nina/evaluation` | `docs/evaluation/EVAL_PLAN.md` and `examples/evaluation-cases.json`: model/algorithm evaluation cases, expected behavior, evidence boundaries and product value |
+
+Each handoff should state what changed, its assumptions, how the artifact was checked and any decision needed. Test cases are proposed inputs until actually run; do not present generated results as evaluation evidence. Domain sources should be cited where external facts are used.
 
 ### Handoffs and decision points
 

@@ -1,17 +1,18 @@
 /* Proposed HeatShift / kruu design tokens. Import only when applying the design. */
 :root {
-  --hs-canvas: #f6f6f0;
-  --hs-surface: #fffefa;
-  --hs-surface-secondary: #e5ead8;
-  --hs-text: #29372b;
-  --hs-text-secondary: #596451;
-  --hs-divider: #dce1d3;
+  color-scheme: light;
+  --hs-canvas: #f8f9f5;
+  --hs-surface: #fffffd;
+  --hs-surface-secondary: #eef1e6;
+  --hs-text: #30372f;
+  --hs-text-secondary: #5d6659;
+  --hs-divider: #e2e7dc;
   --hs-control-border: #7d8771;
-  --hs-primary: #29372b;
-  --hs-on-primary: #fffefa;
-  --hs-warm: #dd8954;
-  --hs-warm-wash: #f4ddb9;
-  --hs-cool: #cddfdf;
+  --hs-primary: #dde5cf;
+  --hs-on-primary: #30372f;
+  --hs-warm: #f1d8b9;
+  --hs-warm-wash: #fbf5e9;
+  --hs-cool: #e8f0ed;
   --hs-warning-text: #76501f;
   --hs-warning-surface: #fff0d6;
   --hs-error-text: #a13228;
@@ -37,29 +38,11 @@
   --hs-radius-hero: 32px;
   --hs-radius-pill: 999px;
   --hs-control-height: 48px;
-  --hs-shadow: 0 8px 28px rgb(41 55 43 / 6%);
+  --hs-shadow: 0 8px 28px rgb(41 55 43 / 3%);
   --hs-duration-feedback: 160ms;
   --hs-duration-expand: 240ms;
   --hs-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
-  --hs-forecast-glow: radial-gradient(ellipse at 85% 80%, #dd89546b, transparent 62%), linear-gradient(135deg, #e5ead8, #f4ddb9);
-}
-[data-hs-theme='dark'] {
-  --hs-canvas: #171e19;
-  --hs-surface: #222c24;
-  --hs-surface-secondary: #323f31;
-  --hs-text: #f6f6f0;
-  --hs-text-secondary: #c0c9b8;
-  --hs-divider: #43513e;
-  --hs-control-border: #839278;
-  --hs-primary: #e5ead8;
-  --hs-on-primary: #29372b;
-  --hs-warning-text: #f4d6a3;
-  --hs-warning-surface: #3d3020;
-  --hs-error-text: #ffc1b5;
-  --hs-error-surface: #402a27;
-  --hs-focus: #d0dfb9;
-  --hs-shadow: 0 8px 28px rgb(0 0 0 / 16%);
-  --hs-forecast-glow: radial-gradient(ellipse at 85% 80%, #a9633659, transparent 62%), linear-gradient(135deg, #222c24, #423c2e);
+  --hs-forecast-glow: radial-gradient(ellipse at 85% 80%, #f1d8b940, transparent 62%), linear-gradient(135deg, #f5f7ee, #fbf8f0);
 }
 .hs-surface { background: var(--hs-surface); color: var(--hs-text); border-radius: var(--hs-radius-card); }
 .hs-forecast { background: var(--hs-forecast-glow); color: var(--hs-text); border-radius: var(--hs-radius-hero); }
